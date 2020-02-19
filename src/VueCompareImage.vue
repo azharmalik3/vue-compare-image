@@ -9,7 +9,7 @@
     />
     <div :style="leftImageStyle" class="left-label">{{leftLabel}}</div>
 
-    <img :alt="rightImageAlt" :src="rightImage" class="right-image" ref="rightImageRef" />
+    <img :style="rightImageStyle" :alt="rightImageAlt" :src="rightImage" class="right-image" ref="rightImageRef" />
     <div :style="rightLabelStyle" ref="rightLabelRef" class="right-label">{{rightLabel}}</div>
 
     <div :style="sliderStyle" class="vci-slider">
@@ -99,6 +99,14 @@ export default Vue.extend({
       type: Number,
       default: 0.5,
     },
+    width: {
+      type: String,
+      default: '100%',
+    },
+    height: {
+      type: String,
+      default: '100%',
+    },
   },
   methods: {
     getAndSetImageWidth() {
@@ -158,6 +166,13 @@ export default Vue.extend({
       return {
         clip: `rect(auto, ${this.imageWidth * this.positionPct}px, auto, auto)`,
       };
+    },
+    rightImageStyle() {
+      return {
+        // height: "auto",
+        height: this.height,
+        width: this.width
+      }
     },
     rightLabelStyle() {
       const cutLeft = Math.max(
